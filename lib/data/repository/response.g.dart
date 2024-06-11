@@ -1,28 +1,30 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'models.dart';
+part of 'response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-UnitModel _$UnitModelFromJson(Map<String, dynamic> json) => UnitModel(
+UnitResponse _$UnitResponseFromJson(Map<String, dynamic> json) => UnitResponse(
       (json['id'] as num?)?.toInt(),
       json['name'] as String?,
     );
 
-Map<String, dynamic> _$UnitModelToJson(UnitModel instance) => <String, dynamic>{
+Map<String, dynamic> _$UnitResponseToJson(UnitResponse instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
     };
 
-InvoiceDetailModel _$InvoiceDetailModelFromJson(Map<String, dynamic> json) =>
-    InvoiceDetailModel(
+InvoiceDetailResponse _$InvoiceDetailResponseFromJson(
+        Map<String, dynamic> json) =>
+    InvoiceDetailResponse(
       (json['orderNo'] as num?)?.toInt(),
       json['name'] as String?,
       json['unit'] == null
           ? null
-          : UnitModel.fromJson(json['unit'] as Map<String, dynamic>),
+          : UnitResponse.fromJson(json['unit'] as Map<String, dynamic>),
       (json['unitNo'] as num?)?.toInt(),
       (json['price'] as num?)?.toDouble(),
       (json['quantity'] as num?)?.toDouble(),
@@ -30,7 +32,8 @@ InvoiceDetailModel _$InvoiceDetailModelFromJson(Map<String, dynamic> json) =>
       json['creationDate'] as String?,
     );
 
-Map<String, dynamic> _$InvoiceDetailModelToJson(InvoiceDetailModel instance) =>
+Map<String, dynamic> _$InvoiceDetailResponseToJson(
+        InvoiceDetailResponse instance) =>
     <String, dynamic>{
       'orderNo': instance.orderNo,
       'name': instance.name,

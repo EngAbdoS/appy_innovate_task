@@ -21,7 +21,7 @@ class _AppServiceClient implements AppServiceClient {
   String? baseUrl;
 
   @override
-  Future<InvoiceDetailModel> postInvoiceDetail(
+  Future<InvoiceDetailResponse> postInvoiceDetail(
     int orderNo,
     String? name,
     UnitModel unit,
@@ -46,8 +46,8 @@ class _AppServiceClient implements AppServiceClient {
       'creationDate': creationDate,
     };
     _data.removeWhere((k, v) => v == null);
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<InvoiceDetailModel>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<InvoiceDetailResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -63,7 +63,7 @@ class _AppServiceClient implements AppServiceClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = InvoiceDetailModel.fromJson(_result.data!);
+    final value = InvoiceDetailResponse.fromJson(_result.data!);
     return value;
   }
 
@@ -140,13 +140,13 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<List<InvoiceDetailModel>> getInvoiceDetail() async {
+  Future<List<InvoiceDetailResponse>> getInvoiceDetail() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio
-        .fetch<List<dynamic>>(_setStreamType<List<InvoiceDetailModel>>(Options(
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<List<InvoiceDetailResponse>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -164,13 +164,13 @@ class _AppServiceClient implements AppServiceClient {
             ))));
     var value = _result.data!
         .map((dynamic i) =>
-            InvoiceDetailModel.fromJson(i as Map<String, dynamic>))
+            InvoiceDetailResponse.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }
 
   @override
-  Future<UnitModel> postUnit(
+  Future<UnitResponse> postUnit(
     int id,
     String? name,
   ) async {
@@ -184,7 +184,7 @@ class _AppServiceClient implements AppServiceClient {
     };
     _data.removeWhere((k, v) => v == null);
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<UnitModel>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<UnitResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -200,7 +200,7 @@ class _AppServiceClient implements AppServiceClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = UnitModel.fromJson(_result.data!);
+    final value = UnitResponse.fromJson(_result.data!);
     return value;
   }
 
@@ -265,13 +265,13 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<List<UnitModel>> getUnit() async {
+  Future<List<UnitResponse>> getUnit() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result =
-        await _dio.fetch<List<dynamic>>(_setStreamType<List<UnitModel>>(Options(
+    final _result = await _dio
+        .fetch<List<dynamic>>(_setStreamType<List<UnitResponse>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -288,7 +288,7 @@ class _AppServiceClient implements AppServiceClient {
               baseUrl,
             ))));
     var value = _result.data!
-        .map((dynamic i) => UnitModel.fromJson(i as Map<String, dynamic>))
+        .map((dynamic i) => UnitResponse.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }

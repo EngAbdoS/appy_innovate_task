@@ -1,4 +1,5 @@
 import 'package:appy_innovate/app/constants.dart';
+import 'package:appy_innovate/data/repository/response.dart';
 import 'package:appy_innovate/domain/models/models.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
@@ -11,7 +12,7 @@ abstract class AppServiceClient {
 
   /// InvoiceDetail endPoints
   @POST("/InvoiceDetail")
-  Future<InvoiceDetailModel> postInvoiceDetail(
+  Future<InvoiceDetailResponse> postInvoiceDetail(
     @Field("orderNo") int orderNo,
     @Field("name") String? name,
     @Field("unit") UnitModel unit,
@@ -40,12 +41,12 @@ abstract class AppServiceClient {
   );
 
   @GET("/InvoiceDetail")
-  Future<List<InvoiceDetailModel>> getInvoiceDetail();
+  Future<List<InvoiceDetailResponse>> getInvoiceDetail();
 
   /// unit endPoints
 
   @POST("/Unit")
-  Future<UnitModel> postUnit(
+  Future<UnitResponse> postUnit(
     @Field("id") int id,
     @Field("name") String? name,
   );
@@ -62,5 +63,5 @@ abstract class AppServiceClient {
   );
 
   @GET("/Unit")
-  Future<List<UnitModel>> getUnit();
+  Future<List<UnitResponse>> getUnit();
 }
