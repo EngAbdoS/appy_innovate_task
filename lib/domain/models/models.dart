@@ -1,21 +1,21 @@
-class Unit {
+class UnitModel {
   int id;
   String? name;
 
-  Unit({required this.id, this.name});
+  UnitModel({required this.id, this.name});
 }
 
-class InvoiceDetail {
+class InvoiceDetailModel {
   int orderNo;
   String? name;
-  Unit unit;
+  UnitModel unit;
   int unitNo;
   double price;
   double quantity;
   double total;
   String creationDate;
 
-  InvoiceDetail(
+  InvoiceDetailModel(
       {required this.orderNo,
       required this.name,
       required this.unit,
