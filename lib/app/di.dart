@@ -18,6 +18,7 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<AppServiceClient>(() => AppServiceClient(dio));
   instance.registerLazySingleton<RemoteDataSource>(
           () => RemoteDataSourceImplementation(instance()));
+  instance.registerLazySingleton<RemoteDataSource>(()=>RemoteDataSourceImplementation(instance()));
 
 
 

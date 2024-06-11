@@ -1,5 +1,5 @@
 import 'package:appy_innovate/app/constants.dart';
-import 'package:appy_innovate/data/repository/response.dart';
+import 'package:appy_innovate/data/response/response.dart';
 import 'package:appy_innovate/domain/models/models.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';

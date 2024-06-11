@@ -1,7 +1,7 @@
 import 'package:appy_innovate/data/network/app_api.dart';
 import 'package:appy_innovate/data/network/error_handler.dart';
 import 'package:appy_innovate/data/network/failure.dart';
-import 'package:appy_innovate/data/repository/response.dart';
+import 'package:appy_innovate/data/response/response.dart';
 import 'package:appy_innovate/domain/models/models.dart';
 import 'package:dartz/dartz.dart';
 
@@ -52,6 +52,44 @@ class RemoteDataSourceImplementation implements RemoteDataSource {
   }
 
   @override
+  Future<Either<Failure, InvoiceDetailResponse>> postInvoiceDetail(
+      InvoiceDetailModel invoiceDetail) async {
+    try {
+      var result = await _appServiceClient.postInvoiceDetail(
+          invoiceDetail.orderNo,
+          invoiceDetail.name,
+          invoiceDetail.unit,
+          invoiceDetail.unitNo,
+          invoiceDetail.price,
+          invoiceDetail.quantity,
+          invoiceDetail.total,
+          invoiceDetail.creationDate);
+      return Right(result);
+    } catch (error) {
+      return Left(ErrorHandler.handle(error).failure);
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> putInvoiceDetail(
+      InvoiceDetailModel invoiceDetail) async {
+    try {
+      var result = await _appServiceClient.putInvoiceDetail(
+          invoiceDetail.orderNo,
+          invoiceDetail.name,
+          invoiceDetail.unit,
+          invoiceDetail.unitNo,
+          invoiceDetail.price,
+          invoiceDetail.quantity,
+          invoiceDetail.total,
+          invoiceDetail.creationDate);
+      return Right(result);
+    } catch (error) {
+      return Left(ErrorHandler.handle(error).failure);
+    }
+  }
+
+  @override
   Future<Either<Failure, bool>> deleteUnit(int id) async {
     try {
       var result = await _appServiceClient.deleteUnit(id);
@@ -72,47 +110,9 @@ class RemoteDataSourceImplementation implements RemoteDataSource {
   }
 
   @override
-  Future<Either<Failure, InvoiceDetailResponse>> postInvoiceDetail(
-      InvoiceDetailModel invoiceDetail) async {
-    try {
-      var result = await _appServiceClient.postInvoiceDetail(
-          invoiceDetail.orderNo,
-          invoiceDetail.name,
-          invoiceDetail.unit,
-          invoiceDetail.unitNo,
-          invoiceDetail.price,
-          invoiceDetail.quantity,
-          invoiceDetail.total,
-          invoiceDetail.creationDate);
-      return Right(result);
-    } catch (error) {
-      return Left(ErrorHandler.handle(error).failure);
-    }
-  }
-
-  @override
   Future<Either<Failure, UnitResponse>> postUnit(UnitModel unit) async {
     try {
       var result = await _appServiceClient.postUnit(unit.id, unit.name);
-      return Right(result);
-    } catch (error) {
-      return Left(ErrorHandler.handle(error).failure);
-    }
-  }
-
-  @override
-  Future<Either<Failure, bool>> putInvoiceDetail(
-      InvoiceDetailModel invoiceDetail) async {
-    try {
-      var result = await _appServiceClient.putInvoiceDetail(
-          invoiceDetail.orderNo,
-          invoiceDetail.name,
-          invoiceDetail.unit,
-          invoiceDetail.unitNo,
-          invoiceDetail.price,
-          invoiceDetail.quantity,
-          invoiceDetail.total,
-          invoiceDetail.creationDate);
       return Right(result);
     } catch (error) {
       return Left(ErrorHandler.handle(error).failure);
