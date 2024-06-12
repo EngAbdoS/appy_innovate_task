@@ -1,16 +1,15 @@
 import 'package:appy_innovate/app/di.dart';
 import 'package:appy_innovate/data/requests/unitRequest.dart';
 import 'package:appy_innovate/domain/repository/repository.dart';
-import 'package:appy_innovate/presentation/pages/put/UnitBaseViewModel.dart';
+import 'package:appy_innovate/presentation/pages/unit/UnitBaseViewModel.dart';
 import 'package:appy_innovate/presentation/widgets/errorState.dart';
 import 'package:appy_innovate/presentation/widgets/loadingState.dart';
 import 'package:appy_innovate/presentation/widgets/successState.dart';
 
-class PutUnitViewModel extends BaseUnitViewModel{
+class AddUnitViewModel extends BaseUnitViewModel{
+   final Repository _repo = instance<Repository>();
 
-  final Repository _repo = instance<Repository>();
-
-  putUnit(dynamic context) async {
+  addUnit(dynamic context) async {
     loadingState(context: context);
     //print(_repo.getInvoiceDetail());
     UnitRequest req = UnitRequest(
@@ -18,7 +17,7 @@ class PutUnitViewModel extends BaseUnitViewModel{
       name: unitModel.name,
     );
 
-    (await _repo.putUnit(req)).fold(
+    (await _repo.postUnit(req)).fold(
             (failure) => {
           errorState(context: context, message: failure.message),
           //TODO create error state
@@ -27,7 +26,5 @@ class PutUnitViewModel extends BaseUnitViewModel{
     });
     print("add");
   }
-
-
 
 }

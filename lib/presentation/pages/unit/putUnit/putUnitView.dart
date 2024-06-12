@@ -1,16 +1,14 @@
 import 'package:appy_innovate/app/di.dart';
-import 'package:appy_innovate/presentation/pages/put/addUnit/addUnitViewModel.dart';
-import 'package:appy_innovate/presentation/widgets/inputInvoiceDetail.dart';
+import 'package:appy_innovate/presentation/pages/unit/putUnit/putUnitViewModel.dart';
 import 'package:appy_innovate/presentation/widgets/inputUnit.dart';
 import 'package:appy_innovate/presentation/widgets/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class AddUnitView extends StatelessWidget {
-  AddUnitView({super.key});
+class PutUnitView extends StatelessWidget {
+  PutUnitView({super.key});
 
-  final AddUnitViewModel addUnitViewModel =
-  instance<AddUnitViewModel>();
+  final PutUnitViewModel putUnitViewModel = instance<PutUnitViewModel>();
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +21,7 @@ class AddUnitView extends StatelessWidget {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 color: Colors.lightBlue.shade50),
-            child: const Text("post Unit")),
+            child: const Text("Put Unit")),
         backgroundColor: Colors.lightBlue.withOpacity(0.4),
       ),
       body: SingleChildScrollView(
@@ -32,25 +30,24 @@ class AddUnitView extends StatelessWidget {
           child: Column(
             children: [
               InputUnit(
-                  outputIsUnitNameValid: addUnitViewModel.outputIsUnitNameValid,
-                  outputIsUnitIdValid: addUnitViewModel.outputIsUnitIdValid,
-                  setUnitName: addUnitViewModel.setUnitName,
-                  setUnitId: addUnitViewModel.setUnitId),
+                  outputIsUnitNameValid: putUnitViewModel.outputIsUnitNameValid,
+                  outputIsUnitIdValid: putUnitViewModel.outputIsUnitIdValid,
+                  setUnitName: putUnitViewModel.setUnitName,
+                  setUnitId: putUnitViewModel.setUnitId),
               SizedBox(
                 height: 20.h,
               ),
               ElevatedButton(
-                onPressed: () =>
-                (addUnitViewModel.isUnitValid())
+                onPressed: () => (putUnitViewModel.isUnitValid())
                     ? {
-                  addUnitViewModel.addUnit(context),
-                  // Navigator.pop(context),
-                }
+                        putUnitViewModel.putUnit(context),
+                        // Navigator.pop(context),
+                      }
                     : {toastWidget("Please Enter All Fields with valid data.")},
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.lightBlue,
                 ),
-                child: const Text("Add Unit"),
+                child: const Text("Put Unit"),
               ),
             ],
           ),

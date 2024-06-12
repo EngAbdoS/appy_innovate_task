@@ -1,14 +1,15 @@
 import 'package:appy_innovate/app/di.dart';
-import 'package:appy_innovate/presentation/pages/put/deleteUnit/deleteUnitViewModel.dart';
+import 'package:appy_innovate/presentation/pages/unit/addUnit/addUnitViewModel.dart';
 import 'package:appy_innovate/presentation/widgets/inputUnit.dart';
 import 'package:appy_innovate/presentation/widgets/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class DeleteUnitView extends StatelessWidget {
-  DeleteUnitView({super.key});
+class AddUnitView extends StatelessWidget {
+  AddUnitView({super.key});
 
-  final DeleteUnitViewModel deleteUnitViewModel = instance<DeleteUnitViewModel>();
+  final AddUnitViewModel addUnitViewModel =
+  instance<AddUnitViewModel>();
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class DeleteUnitView extends StatelessWidget {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 color: Colors.lightBlue.shade50),
-            child: const Text("Delete Unit")),
+            child: const Text("post Unit")),
         backgroundColor: Colors.lightBlue.withOpacity(0.4),
       ),
       body: SingleChildScrollView(
@@ -29,28 +30,26 @@ class DeleteUnitView extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              SizedBox(
-                height: 20.h,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: inputUnitId(deleteUnitViewModel.outputIsUnitIdValid,
-                    deleteUnitViewModel.setUnitId),
-              ),
+              InputUnit(
+                  outputIsUnitNameValid: addUnitViewModel.outputIsUnitNameValid,
+                  outputIsUnitIdValid: addUnitViewModel.outputIsUnitIdValid,
+                  setUnitName: addUnitViewModel.setUnitName,
+                  setUnitId: addUnitViewModel.setUnitId),
               SizedBox(
                 height: 20.h,
               ),
               ElevatedButton(
-                onPressed: () => (deleteUnitViewModel.isUnitIdValid())
+                onPressed: () =>
+                (addUnitViewModel.isUnitValid())
                     ? {
-                  deleteUnitViewModel.deleteUnit(context),
-                        // Navigator.pop(context),
-                      }
+                  addUnitViewModel.addUnit(context),
+                  // Navigator.pop(context),
+                }
                     : {toastWidget("Please Enter All Fields with valid data.")},
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.lightBlue,
                 ),
-                child: const Text("Delete Unit"),
+                child: const Text("Add Unit"),
               ),
             ],
           ),

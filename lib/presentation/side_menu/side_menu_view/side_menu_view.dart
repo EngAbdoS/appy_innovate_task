@@ -4,10 +4,10 @@ import 'package:appy_innovate/presentation/pages/invoiceDetail/addInvoiceDetail/
 import 'package:appy_innovate/presentation/pages/invoiceDetail/deleteInvoiceDetail/deleteInvoiceDetailView.dart';
 import 'package:appy_innovate/presentation/pages/invoiceDetail/getInvoiceDetail/getInvoiceDetailView.dart';
 import 'package:appy_innovate/presentation/pages/invoiceDetail/putInvoiceDetail/putInvoiceDetailView.dart';
-import 'package:appy_innovate/presentation/pages/put/addUnit/addUnitView.dart';
-import 'package:appy_innovate/presentation/pages/put/deleteUnit/deleteUnitView.dart';
-import 'package:appy_innovate/presentation/pages/put/getUnits/getUnitsView.dart';
-import 'package:appy_innovate/presentation/pages/put/putUnit/putUnitView.dart';
+import 'package:appy_innovate/presentation/pages/unit/addUnit/addUnitView.dart';
+import 'package:appy_innovate/presentation/pages/unit/deleteUnit/deleteUnitView.dart';
+import 'package:appy_innovate/presentation/pages/unit/getUnits/getUnitsView.dart';
+import 'package:appy_innovate/presentation/pages/unit/putUnit/putUnitView.dart';
 import 'package:appy_innovate/presentation/side_menu/side_menu_viewModel/side_menu_viewModel.dart';
 import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +18,7 @@ class SideMenuView extends StatelessWidget {
   final SideMenuViewModel _viewModel = instance<SideMenuViewModel>();
   final SideMenuController sideMenuController = SideMenuController();
   final pages = [
-    MainPage(),
+    const MainPage(),
     AddUnitView(),
     PutUnitView(),
     DeleteUnitView(),
@@ -125,8 +125,7 @@ class SideMenuView extends StatelessWidget {
               unselectedIconColor: Colors.black54,
               backgroundColor: Colors.lightBlue.withOpacity(.05),
               selectedTitleTextStyle: const TextStyle(color: Colors.white),
-              unselectedTitleTextStyle:
-                  const TextStyle(color: Colors.black54),
+              unselectedTitleTextStyle: const TextStyle(color: Colors.black54),
               iconSize: 20,
               itemBorderRadius: const BorderRadius.all(
                 Radius.circular(5.0),
@@ -137,22 +136,14 @@ class SideMenuView extends StatelessWidget {
               itemInnerSpacing: 8.0,
               itemOuterPadding: const EdgeInsets.symmetric(horizontal: 5.0),
               toggleColor: Colors.black54,
-
-              // Additional properties for expandable items
               selectedTitleTextStyleExpandable:
                   const TextStyle(color: Colors.white),
-              // Adjust the style as needed
               unselectedTitleTextStyleExpandable:
                   const TextStyle(color: Colors.black54),
-              // Adjust the style as needed
               selectedIconColorExpandable: Colors.white,
-              // Adjust the color as needed
               unselectedIconColorExpandable: Colors.black54,
-              // Adjust the color as needed
               arrowCollapse: Colors.blueGrey,
-              // Adjust the color as needed
               arrowOpen: Colors.lightBlueAccent,
-              // Adjust the color as needed
               iconSizeExpandable: 24.0, // Adjust the size as needed
             ),
             controller: sideMenuController,
@@ -166,15 +157,12 @@ class SideMenuView extends StatelessWidget {
                 // height: 300.h,
               ),
             )),
-            // footer: const Text('Appy Innovate'),
             onDisplayModeChanged: (mode) {
               print(mode);
             },
             items: items,
           ),
           Expanded(
-            //Stream builder
-
             child: StreamBuilder<int>(
                 stream: _viewModel.currentPageWidgetStream,
                 builder: (context, snapshot) {

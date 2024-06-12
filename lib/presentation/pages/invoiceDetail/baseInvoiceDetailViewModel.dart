@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:appy_innovate/app/extentions.dart';
 import 'package:appy_innovate/domain/models/models.dart';
-import 'package:appy_innovate/presentation/pages/put/UnitBaseViewModel.dart';
+import 'package:appy_innovate/presentation/pages/unit/UnitBaseViewModel.dart';
 import 'package:rxdart/rxdart.dart';
 
 abstract class BaseInvoiceDetailViewModel extends BaseUnitViewModel {

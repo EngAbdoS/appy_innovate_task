@@ -1,6 +1,6 @@
 import 'package:appy_innovate/app/di.dart';
 import 'package:appy_innovate/domain/models/models.dart';
-import 'package:appy_innovate/presentation/pages/put/getUnits/GetUnitsViewModel.dart';
+import 'package:appy_innovate/presentation/pages/unit/getUnits/GetUnitsViewModel.dart';
 import 'package:appy_innovate/presentation/widgets/UnitWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

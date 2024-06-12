@@ -1,15 +1,14 @@
 import 'package:appy_innovate/app/di.dart';
-import 'package:appy_innovate/presentation/pages/put/putUnit/putUnitViewModel.dart';
+import 'package:appy_innovate/presentation/pages/unit/deleteUnit/deleteUnitViewModel.dart';
 import 'package:appy_innovate/presentation/widgets/inputUnit.dart';
 import 'package:appy_innovate/presentation/widgets/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class PutUnitView extends StatelessWidget {
-  PutUnitView({super.key});
+class DeleteUnitView extends StatelessWidget {
+  DeleteUnitView({super.key});
 
-  final PutUnitViewModel putUnitViewModel =
-  instance<PutUnitViewModel>();
+  final DeleteUnitViewModel deleteUnitViewModel = instance<DeleteUnitViewModel>();
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +21,7 @@ class PutUnitView extends StatelessWidget {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 color: Colors.lightBlue.shade50),
-            child: const Text("Put Unit")),
+            child: const Text("Delete Unit")),
         backgroundColor: Colors.lightBlue.withOpacity(0.4),
       ),
       body: SingleChildScrollView(
@@ -30,26 +29,28 @@ class PutUnitView extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              InputUnit(
-                  outputIsUnitNameValid: putUnitViewModel.outputIsUnitNameValid,
-                  outputIsUnitIdValid: putUnitViewModel.outputIsUnitIdValid,
-                  setUnitName: putUnitViewModel.setUnitName,
-                  setUnitId: putUnitViewModel.setUnitId),
+              SizedBox(
+                height: 20.h,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: inputUnitId(deleteUnitViewModel.outputIsUnitIdValid,
+                    deleteUnitViewModel.setUnitId),
+              ),
               SizedBox(
                 height: 20.h,
               ),
               ElevatedButton(
-                onPressed: () =>
-                (putUnitViewModel.isUnitValid())
+                onPressed: () => (deleteUnitViewModel.isUnitIdValid())
                     ? {
-                  putUnitViewModel.putUnit(context),
-                  // Navigator.pop(context),
-                }
+                  deleteUnitViewModel.deleteUnit(context),
+                        // Navigator.pop(context),
+                      }
                     : {toastWidget("Please Enter All Fields with valid data.")},
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.lightBlue,
                 ),
-                child: const Text("Put Unit"),
+                child: const Text("Delete Unit"),
               ),
             ],
           ),
