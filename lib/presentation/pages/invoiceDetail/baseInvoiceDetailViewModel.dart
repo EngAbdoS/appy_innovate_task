@@ -119,30 +119,6 @@ abstract class BaseInvoiceDetailViewModel extends BaseUnitViewModel {
         invoiceDetailModel.total != 0 &&
         super.isUnitValid();
   }
-  //
-  // addInvoiceDetail(dynamic context) async {
-  //   loadingState(context: context);
-  //   //print(_repo.getInvoiceDetail());
-  //   InvoiceDetailRequest req = InvoiceDetailRequest(
-  //     orderNo: invoiceDetailModel.orderNo,
-  //     unit: UnitRequest(id: super.unitModel.id, name: super.unitModel.name),
-  //     unitNo: invoiceDetailModel.unitNo,
-  //     price: invoiceDetailModel.price,
-  //     quantity: invoiceDetailModel.quantity,
-  //     total: invoiceDetailModel.total,
-  //     creationDate: DateFormat("yyyy-MM-ddTHH:mm:ss.SSS'Z'")
-  //         .format(DateTime.now().toUtc()),
-  //   );
-  //
-  //   (await _repo.postInvoiceDetail(req)).fold(
-  //           (failure) => {
-  //         errorState(context: context, message: failure.message),
-  //         //TODO create error state
-  //       }, (data) {
-  //     successState(context: context);
-  //   });
-  //   print("add");
-  // }
 
   @override
   void dispose() {

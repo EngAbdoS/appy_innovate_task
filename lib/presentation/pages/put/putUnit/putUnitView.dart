@@ -49,7 +49,7 @@ class PutUnitView extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.lightBlue,
                 ),
-                child: const Text("Add Unit"),
+                child: const Text("Put Unit"),
               ),
             ],
           ),

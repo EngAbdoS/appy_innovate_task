@@ -35,7 +35,17 @@ class RepositoryImplementation implements Repository {
         }
       case StorageType.firebase:
         {
-          return Right([]);
+          return await (await _firebaseDataSource.getInvoiceDetail()).fold(
+              (error) {
+            return Left(error);
+          }, (response) {
+            if (response.isNotEmpty) {
+              var invoiceDetail = response.map((e) => e.toDomain()).toList();
+              return Right(invoiceDetail);
+            } else {
+              return Left(ErrorHandler.handle(response).failure);
+            }
+          });
         }
       case StorageType.localDB:
         {
@@ -61,7 +71,12 @@ class RepositoryImplementation implements Repository {
         }
       case StorageType.firebase:
         {
-          return Right(false);
+          return await (await _firebaseDataSource.deleteInvoiceDetail(orderNo))
+              .fold((error) {
+            return Left(error);
+          }, (response) {
+            return Right(response);
+          });
         }
       case StorageType.localDB:
         {
@@ -150,26 +165,31 @@ class RepositoryImplementation implements Repository {
           return await (await _remoteDataSource
                   .postInvoiceDetail(invoiceDetail))
               .fold((error) {
-            print("errrrrr");
-
             return Left(error);
           }, (response) {
-            print("res");
             if (response.orderNo != 0) {
               var invoiceDetail = response.toDomain();
-              print("res err");
-
               return Right(invoiceDetail);
             } else {
-              print("no res");
-
               return Left(ErrorHandler.handle(response).failure);
             }
           });
         }
       case StorageType.firebase:
         {
-          return Left(DataSource.DEFAULT.getFailure());
+          return await (await _firebaseDataSource
+                  .postInvoiceDetail(invoiceDetail))
+              .fold((error) {
+            return Left(error);
+          }, (response) {
+            print("res");
+            if (response.orderNo != 0) {
+              var invoiceDetail = response.toDomain();
+              return Right(invoiceDetail);
+            } else {
+              return Left(ErrorHandler.handle(response).failure);
+            }
+          });
         }
       case StorageType.localDB:
         {
@@ -199,7 +219,8 @@ class RepositoryImplementation implements Repository {
           });
         }
       case StorageType.firebase:
-        {print("heer");
+        {
+          print("heer");
           return await (await _firebaseDataSource.postUnit(unit)).fold((error) {
             return Left(error);
           }, (response) {
@@ -236,7 +257,13 @@ class RepositoryImplementation implements Repository {
         }
       case StorageType.firebase:
         {
-          return Right(false);
+          return await (await _firebaseDataSource
+                  .putInvoiceDetail(invoiceDetail))
+              .fold((error) {
+            return Left(error);
+          }, (response) {
+            return Right(response);
+          });
         }
       case StorageType.localDB:
         {

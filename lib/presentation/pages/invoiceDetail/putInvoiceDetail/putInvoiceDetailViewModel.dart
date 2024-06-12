@@ -14,6 +14,7 @@ class PutInvoiceDetailViewModel extends BaseInvoiceDetailViewModel {
   putInvoiceDetail(dynamic context) async {
     loadingState(context: context);
     InvoiceDetailRequest req = InvoiceDetailRequest(
+      name: invoiceDetailModel.name,
       orderNo: invoiceDetailModel.orderNo,
       unit: UnitRequest(id: super.unitModel.id, name: super.unitModel.name),
       unitNo: invoiceDetailModel.unitNo,

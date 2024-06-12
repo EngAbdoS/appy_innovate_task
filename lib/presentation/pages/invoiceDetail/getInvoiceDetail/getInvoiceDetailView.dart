@@ -65,7 +65,7 @@ class _GetInvoiceDetailViewState extends State<GetInvoiceDetailView> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.lightBlue,
               ),
-              child: const Text("Delete Invoice Detail"),
+              child: const Text("Get Invoice Detail"),
             ),
             SizedBox(
               height: 20.h,
