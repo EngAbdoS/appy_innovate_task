@@ -1,6 +1,6 @@
 import 'package:appy_innovate/app/di.dart';
 import 'package:appy_innovate/presentation/mainPage.dart';
-import 'package:appy_innovate/presentation/pages/addInvoiceDetail/addInvoiceDetailView.dart';
+import 'package:appy_innovate/presentation/pages/invoiceDetail/addInvoiceDetail/addInvoiceDetailView.dart';
 import 'package:appy_innovate/presentation/pages/put/addUnit/addUnitView.dart';
 import 'package:appy_innovate/presentation/pages/put/deleteUnit/deleteUnitView.dart';
 import 'package:appy_innovate/presentation/pages/put/getUnits/getUnitsView.dart';
@@ -163,7 +163,7 @@ class SideMenuView extends StatelessWidget {
                   // height: 300.h,
                 ),
               )),
-              footer: const Text('Appy Innovate'),
+             // footer: const Text('Appy Innovate'),
               onDisplayModeChanged: (mode) {
                 print(mode);
               },

@@ -1,5 +1,4 @@
-import 'package:appy_innovate/presentation/pages/addInvoiceDetail/addInvoiceDetailView.dart';
-import 'package:appy_innovate/presentation/pages/addInvoiceDetail/addInvoiceDetailViewModel.dart';
+import 'package:appy_innovate/presentation/pages/invoiceDetail/addInvoiceDetail/addInvoiceDetailViewModel.dart';
 import 'package:appy_innovate/presentation/widgets/inputUnit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

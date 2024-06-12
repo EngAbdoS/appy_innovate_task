@@ -1,5 +1,5 @@
 import 'package:appy_innovate/app/di.dart';
-import 'package:appy_innovate/presentation/pages/addInvoiceDetail/addInvoiceDetailViewModel.dart';
+import 'package:appy_innovate/presentation/pages/invoiceDetail/addInvoiceDetail/addInvoiceDetailViewModel.dart';
 import 'package:appy_innovate/presentation/widgets/inputInvoiceDetail.dart';
 import 'package:appy_innovate/presentation/widgets/toast.dart';
 import 'package:flutter/material.dart';

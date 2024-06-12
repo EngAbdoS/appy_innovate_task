@@ -63,7 +63,8 @@ class _GetUnitsViewState extends State<GetUnitsView> {
                 backgroundColor: Colors.lightBlue,
               ),
               child: const Text("Delete Unit"),
-            ), SizedBox(
+            ),
+            SizedBox(
               height: 20.h,
             ),
           ],

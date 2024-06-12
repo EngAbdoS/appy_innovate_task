@@ -2,7 +2,7 @@ import 'package:appy_innovate/data/data_sourse/remote_data_sourse.dart';
 import 'package:appy_innovate/data/network/dio_factory.dart';
 import 'package:appy_innovate/data/repository/repository_implementation.dart';
 import 'package:appy_innovate/domain/repository/repository.dart';
-import 'package:appy_innovate/presentation/pages/addInvoiceDetail/addInvoiceDetailViewModel.dart';
+import 'package:appy_innovate/presentation/pages/invoiceDetail/addInvoiceDetail/addInvoiceDetailViewModel.dart';
 import 'package:appy_innovate/presentation/pages/put/addUnit/addUnitViewModel.dart';
 import 'package:appy_innovate/presentation/pages/put/deleteUnit/deleteUnitViewModel.dart';
 import 'package:appy_innovate/presentation/pages/put/getUnits/GetUnitsViewModel.dart';
