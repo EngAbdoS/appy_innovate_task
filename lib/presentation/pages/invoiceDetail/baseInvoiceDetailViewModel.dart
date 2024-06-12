@@ -1,19 +1,10 @@
 import 'dart:async';
-
-import 'package:appy_innovate/app/di.dart';
 import 'package:appy_innovate/app/extentions.dart';
-import 'package:appy_innovate/data/requests/invoiceDetailReuuest.dart';
-import 'package:appy_innovate/data/requests/unitRequest.dart';
 import 'package:appy_innovate/domain/models/models.dart';
-import 'package:appy_innovate/domain/repository/repository.dart';
 import 'package:appy_innovate/presentation/pages/put/UnitBaseViewModel.dart';
-import 'package:appy_innovate/presentation/widgets/errorState.dart';
-import 'package:appy_innovate/presentation/widgets/loadingState.dart';
-import 'package:appy_innovate/presentation/widgets/successState.dart';
-import 'package:intl/intl.dart';
 import 'package:rxdart/rxdart.dart';
 
-class BaseInvoiceDetailViewModel extends BaseUnitViewModel {
+abstract class BaseInvoiceDetailViewModel extends BaseUnitViewModel {
   final StreamController _orderNoStreamController = BehaviorSubject<int>();
   final StreamController _invoiceNameStreamController =
   BehaviorSubject<String>();

@@ -1,4 +1,3 @@
-import 'package:appy_innovate/presentation/pages/invoiceDetail/addInvoiceDetail/addInvoiceDetailViewModel.dart';
 import 'package:appy_innovate/presentation/widgets/inputUnit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class InputInvoiceDetail extends StatelessWidget {
   InputInvoiceDetail({super.key, required this.viewModel});
 
-  final AddInvoiceDetailViewModel viewModel;
+  final dynamic viewModel;
   final TextEditingController nameTextEditingController =
       TextEditingController();
   final TextEditingController quantityTextEditingController =
@@ -18,8 +17,6 @@ class InputInvoiceDetail extends StatelessWidget {
   final TextEditingController creationDateTextEditingController =
       TextEditingController();
   final TextEditingController unitNoTextEditingController =
-      TextEditingController();
-  final TextEditingController orderNoTextEditingController =
       TextEditingController();
 
   @override
@@ -52,23 +49,8 @@ class InputInvoiceDetail extends StatelessWidget {
             children: [
               Flexible(
                 flex: 1,
-                child: StreamBuilder<bool>(
-                    stream: viewModel.outPutIsOrderNoValid,
-                    builder: (context, snapshot) {
-                      return TextFormField(
-                        onChanged: (orderNo) => viewModel.setOrderNo(orderNo),
-                        keyboardType: TextInputType.number,
-                        controller: orderNoTextEditingController,
-                        textAlign: TextAlign.center,
-                        decoration: InputDecoration(
-                          hintText: "enter orderNo",
-                          labelText: "orderNo",
-                          errorText: (snapshot.data ?? true)
-                              ? null
-                              : "invalid orderNo",
-                        ),
-                      );
-                    }),
+                child: inputInvoiceDetailOrderNo(
+                    viewModel.outPutIsOrderNoValid, viewModel.setOrderNo),
               ),
               SizedBox(
                 width: 20.h,
@@ -178,4 +160,26 @@ class InputInvoiceDetail extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget inputInvoiceDetailOrderNo(
+    Stream<bool> outPutIsOrderNoValid, Function setOrderNo) {
+  final TextEditingController orderNoTextEditingController =
+      TextEditingController();
+
+  return StreamBuilder<bool>(
+      stream: outPutIsOrderNoValid,
+      builder: (context, snapshot) {
+        return TextFormField(
+          onChanged: (orderNo) => setOrderNo(orderNo),
+          keyboardType: TextInputType.number,
+          controller: orderNoTextEditingController,
+          textAlign: TextAlign.center,
+          decoration: InputDecoration(
+            hintText: "enter orderNo",
+            labelText: "orderNo",
+            errorText: (snapshot.data ?? true) ? null : "invalid orderNo",
+          ),
+        );
+      });
 }

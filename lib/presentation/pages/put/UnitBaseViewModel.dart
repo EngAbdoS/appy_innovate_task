@@ -1,15 +1,9 @@
 import 'dart:async';
-import 'package:appy_innovate/app/di.dart';
 import 'package:appy_innovate/app/extentions.dart';
-import 'package:appy_innovate/data/requests/unitRequest.dart';
 import 'package:appy_innovate/domain/models/models.dart';
-import 'package:appy_innovate/domain/repository/repository.dart';
-import 'package:appy_innovate/presentation/widgets/errorState.dart';
-import 'package:appy_innovate/presentation/widgets/loadingState.dart';
-import 'package:appy_innovate/presentation/widgets/successState.dart';
 import 'package:rxdart/rxdart.dart';
 
-class BaseUnitViewModel {
+abstract class BaseUnitViewModel {
   final StreamController _unitIdStreamController = BehaviorSubject<int>();
   final StreamController _unitNameStreamController = BehaviorSubject<String>();
   final StreamController _unitValidationStreamController =

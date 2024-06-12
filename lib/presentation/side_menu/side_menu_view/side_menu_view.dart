@@ -1,6 +1,8 @@
 import 'package:appy_innovate/app/di.dart';
 import 'package:appy_innovate/presentation/mainPage.dart';
 import 'package:appy_innovate/presentation/pages/invoiceDetail/addInvoiceDetail/addInvoiceDetailView.dart';
+import 'package:appy_innovate/presentation/pages/invoiceDetail/deleteInvoiceDetail/deleteInvoiceDetailView.dart';
+import 'package:appy_innovate/presentation/pages/invoiceDetail/putInvoiceDetail/putInvoiceDetailView.dart';
 import 'package:appy_innovate/presentation/pages/put/addUnit/addUnitView.dart';
 import 'package:appy_innovate/presentation/pages/put/deleteUnit/deleteUnitView.dart';
 import 'package:appy_innovate/presentation/pages/put/getUnits/getUnitsView.dart';
@@ -21,6 +23,8 @@ class SideMenuView extends StatelessWidget {
     DeleteUnitView(),
     const GetUnitsView(),
     AddInvoiceDetailView(),
+    PutInvoiceDetailView(),
+    DeleteInvoiceDetailView(),
   ];
   final List items = [
     SideMenuItem(
@@ -98,7 +102,6 @@ class SideMenuView extends StatelessWidget {
     ),
   ];
 
-
   @override
   Widget build(BuildContext context) {
     sideMenuController
@@ -163,7 +166,7 @@ class SideMenuView extends StatelessWidget {
                   // height: 300.h,
                 ),
               )),
-             // footer: const Text('Appy Innovate'),
+              // footer: const Text('Appy Innovate'),
               onDisplayModeChanged: (mode) {
                 print(mode);
               },
