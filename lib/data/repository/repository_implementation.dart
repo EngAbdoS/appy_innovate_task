@@ -3,6 +3,7 @@ import 'package:appy_innovate/data/data_sourse/remote_data_sourse.dart';
 import 'package:appy_innovate/data/mappers/mappers.dart';
 import 'package:appy_innovate/data/network/error_handler.dart';
 import 'package:appy_innovate/data/network/failure.dart';
+import 'package:appy_innovate/data/requests/invoiceDetailReuuest.dart';
 import 'package:appy_innovate/domain/models/models.dart';
 import 'package:appy_innovate/domain/repository/repository.dart';
 import 'package:dartz/dartz.dart';
@@ -126,19 +127,26 @@ class RepositoryImplementation implements Repository {
 
   @override
   Future<Either<Failure, InvoiceDetailModel>> postInvoiceDetail(
-      InvoiceDetailModel invoiceDetail) async {
+      InvoiceDetailRequest invoiceDetail) async {
     switch (defaultStorage) {
       case StorageType.remoteApi:
         {
           return await (await _remoteDataSource
                   .postInvoiceDetail(invoiceDetail))
               .fold((error) {
+            print("errrrrr");
+
             return Left(error);
           }, (response) {
+                print("res");
             if (response.orderNo != 0) {
               var invoiceDetail = response.toDomain();
+              print("res err");
+
               return Right(invoiceDetail);
             } else {
+              print("no res");
+
               return Left(ErrorHandler.handle(response).failure);
             }
           });
@@ -189,7 +197,7 @@ class RepositoryImplementation implements Repository {
 
   @override
   Future<Either<Failure, bool>> putInvoiceDetail(
-      InvoiceDetailModel invoiceDetail) async {
+      InvoiceDetailRequest invoiceDetail) async {
     switch (defaultStorage) {
       case StorageType.remoteApi:
         {

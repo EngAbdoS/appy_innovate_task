@@ -1,6 +1,7 @@
 import 'package:appy_innovate/data/network/app_api.dart';
 import 'package:appy_innovate/data/network/error_handler.dart';
 import 'package:appy_innovate/data/network/failure.dart';
+import 'package:appy_innovate/data/requests/invoiceDetailReuuest.dart';
 import 'package:appy_innovate/data/response/response.dart';
 import 'package:appy_innovate/domain/models/models.dart';
 import 'package:dartz/dartz.dart';
@@ -9,12 +10,12 @@ abstract class RemoteDataSource {
   Future<Either<Failure, List<InvoiceDetailResponse>>> getInvoiceDetail();
 
   Future<Either<Failure, bool>> putInvoiceDetail(
-      InvoiceDetailModel invoiceDetail);
+      InvoiceDetailRequest invoiceDetail);
 
   Future<Either<Failure, bool>> deleteInvoiceDetail(int orderNo);
 
   Future<Either<Failure, InvoiceDetailResponse>> postInvoiceDetail(
-      InvoiceDetailModel invoiceDetail);
+      InvoiceDetailRequest invoiceDetail);
 
   Future<Either<Failure, UnitResponse>> postUnit(UnitModel unit);
 
@@ -53,36 +54,23 @@ class RemoteDataSourceImplementation implements RemoteDataSource {
 
   @override
   Future<Either<Failure, InvoiceDetailResponse>> postInvoiceDetail(
-      InvoiceDetailModel invoiceDetail) async {
+      InvoiceDetailRequest invoiceDetail) async {
     try {
       var result = await _appServiceClient.postInvoiceDetail(
-          invoiceDetail.orderNo,
-          invoiceDetail.name,
-          invoiceDetail.unit,
-          invoiceDetail.unitNo,
-          invoiceDetail.price,
-          invoiceDetail.quantity,
-          invoiceDetail.total,
-          invoiceDetail.creationDate);
+       invoiceDetail);
       return Right(result);
     } catch (error) {
+      print(error);
       return Left(ErrorHandler.handle(error).failure);
     }
   }
 
   @override
   Future<Either<Failure, bool>> putInvoiceDetail(
-      InvoiceDetailModel invoiceDetail) async {
+      InvoiceDetailRequest invoiceDetail) async {
     try {
       var result = await _appServiceClient.putInvoiceDetail(
-          invoiceDetail.orderNo,
-          invoiceDetail.name,
-          invoiceDetail.unit,
-          invoiceDetail.unitNo,
-          invoiceDetail.price,
-          invoiceDetail.quantity,
-          invoiceDetail.total,
-          invoiceDetail.creationDate);
+     invoiceDetail);
       return Right(result);
     } catch (error) {
       return Left(ErrorHandler.handle(error).failure);

@@ -22,30 +22,12 @@ class _AppServiceClient implements AppServiceClient {
 
   @override
   Future<InvoiceDetailResponse> postInvoiceDetail(
-    int orderNo,
-    String? name,
-    UnitModel unit,
-    int unitNo,
-    double price,
-    double quantity,
-    double total,
-    String creationDate,
-  ) async {
+      InvoiceDetailRequest request) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final _data = {
-      'orderNo': orderNo,
-      'name': name,
-      'unit': unit,
-      'unitNo': unitNo,
-      'price': price,
-      'quantity': quantity,
-      'total': total,
-      'creationDate': creationDate,
-    };
-    _data.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    _data.addAll(request.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<InvoiceDetailResponse>(Options(
       method: 'POST',
@@ -68,31 +50,12 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<bool> putInvoiceDetail(
-    int orderNo,
-    String? name,
-    UnitModel unit,
-    int unitNo,
-    double price,
-    double quantity,
-    double total,
-    String creationDate,
-  ) async {
+  Future<bool> putInvoiceDetail(InvoiceDetailRequest request) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final _data = {
-      'orderNo': orderNo,
-      'name': name,
-      'unit': unit,
-      'unitNo': unitNo,
-      'price': price,
-      'quantity': quantity,
-      'total': total,
-      'creationDate': creationDate,
-    };
-    _data.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    _data.addAll(request.toJson());
     final _result = await _dio.fetch<bool>(_setStreamType<bool>(Options(
       method: 'PUT',
       headers: _headers,

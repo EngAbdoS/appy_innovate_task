@@ -51,6 +51,8 @@ Failure _handlePadResponse(int statusCode, dynamic response) {
   if (statusCode == 404) {
     return DataSource.NOT_FOUND.getFailure();
   } else if (statusCode == 500) {
+    return DataSource.INTERNAL_SERVER_ERROR.getFailure();}
+    else if (statusCode == 204) {
     return DataSource.INTERNAL_SERVER_ERROR.getFailure();
   } else if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
     return Failure(response!.statusMessage!, response!.statusCode!);
@@ -120,6 +122,8 @@ extension DataSourceExtention on DataSource {
       case DataSource.DEFAULT:
         return Failure(ResponseMessage.DEFAULT, ResponseCode.DEFAULT);
         break;
+      case DataSource.NO_CONTENT:
+        return Failure(ResponseMessage.NO_CONTENT, ResponseCode.NO_CONTANT);
     }
   }
 }
@@ -131,6 +135,7 @@ enum DataSource {
   FORBIDDEN,
   UNAUTHORISED,
   NOT_FOUND,
+  NO_CONTENT,
   INTERNAL_SERVER_ERROR,
   CONNECT_TIMEOUT,
   CANCEL,
@@ -179,6 +184,8 @@ class ResponseMessage {
   static const String CACHE_ERROR = AppErrorStrings.cacheError;
   static const String NO_INTERNET_CONNECTION = AppErrorStrings.noInternetError;
   static const String DEFAULT = AppErrorStrings.defaultError;
+  static const String NO_CONTENT = AppErrorStrings.noContent;
+
 }
 
 class ApiInternalStatus {

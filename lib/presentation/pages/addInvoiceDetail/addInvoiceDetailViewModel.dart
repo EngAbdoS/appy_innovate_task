@@ -1,8 +1,16 @@
 import 'dart:async';
 
+import 'package:appy_innovate/app/di.dart';
 import 'package:appy_innovate/app/extentions.dart';
+import 'package:appy_innovate/data/requests/invoiceDetailReuuest.dart';
+import 'package:appy_innovate/data/requests/unitRequest.dart';
 import 'package:appy_innovate/domain/models/models.dart';
+import 'package:appy_innovate/domain/repository/repository.dart';
 import 'package:appy_innovate/presentation/pages/addUnit/addUnitViewModel.dart';
+import 'package:appy_innovate/presentation/widgets/errorState.dart';
+import 'package:appy_innovate/presentation/widgets/loadingState.dart';
+import 'package:appy_innovate/presentation/widgets/successState.dart';
+import 'package:intl/intl.dart';
 import 'package:rxdart/rxdart.dart';
 
 class AddInvoiceDetailViewModel extends AddUnitViewModel {
@@ -17,6 +25,9 @@ class AddInvoiceDetailViewModel extends AddUnitViewModel {
       BehaviorSubject<String>();
   final StreamController _invoiceDetailValidationStreamController =
       BehaviorSubject<bool?>();
+
+  final Repository _repo = instance<Repository>();
+
   InvoiceDetailModel invoiceDetailModel = InvoiceDetailModel(
       orderNo: 0,
       unit: UnitModel(id: 0),
@@ -119,6 +130,30 @@ class AddInvoiceDetailViewModel extends AddUnitViewModel {
         super.isUnitValid();
   }
 
+  addInvoiceDetail(dynamic context) async {
+    loadingState(context: context);
+    //print(_repo.getInvoiceDetail());
+    InvoiceDetailRequest req = InvoiceDetailRequest(
+      orderNo: invoiceDetailModel.orderNo,
+      unit: UnitRequest(id: super.unitModel.id, name: super.unitModel.name),
+      unitNo: invoiceDetailModel.unitNo,
+      price: invoiceDetailModel.price,
+      quantity: invoiceDetailModel.quantity,
+      total: invoiceDetailModel.total,
+      creationDate: DateFormat("yyyy-MM-ddTHH:mm:ss.SSS'Z'")
+          .format(DateTime.now().toUtc()),
+    );
+
+    (await _repo.postInvoiceDetail(req)).fold(
+        (failure) => {
+              errorState(context: context, message: failure.message),
+              //TODO create error state
+            }, (data) {
+      successState(context: context);
+    });
+    print("add");
+  }
+
   @override
   void dispose() {
     _orderNoStreamController.close();
@@ -130,9 +165,5 @@ class AddInvoiceDetailViewModel extends AddUnitViewModel {
     _creationDateStreamController.close();
     _invoiceDetailValidationStreamController.close();
     super.dispose();
-  }
-
-  addInvoiceDetail() {
-    print("add");
   }
 }

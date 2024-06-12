@@ -39,7 +39,7 @@ class AddInvoiceDetailView extends StatelessWidget {
               ElevatedButton(
                 onPressed: () => (addInvoiceDetailViewModel.isAllInputsValid())
                     ? {
-                        addInvoiceDetailViewModel.addInvoiceDetail(),
+                        addInvoiceDetailViewModel.addInvoiceDetail(context),
                         // Navigator.pop(context),
                       }
                     : {toastWidget("Please Enter All Fields with valid data.")},

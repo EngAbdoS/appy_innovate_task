@@ -1,4 +1,5 @@
 import 'package:appy_innovate/app/constants.dart';
+import 'package:appy_innovate/data/requests/invoiceDetailReuuest.dart';
 import 'package:appy_innovate/data/response/response.dart';
 import 'package:appy_innovate/domain/models/models.dart';
 import 'package:dio/dio.dart';
@@ -13,26 +14,12 @@ abstract class AppServiceClient {
   /// InvoiceDetail endPoints
   @POST("/InvoiceDetail")
   Future<InvoiceDetailResponse> postInvoiceDetail(
-    @Field("orderNo") int orderNo,
-    @Field("name") String? name,
-    @Field("unit") UnitModel unit,
-    @Field("unitNo") int unitNo,
-    @Field("price") double price,
-    @Field("quantity") double quantity,
-    @Field("total") double total,
-    @Field("creationDate") String creationDate,
+      @Body() InvoiceDetailRequest request
   );
 
   @PUT("/InvoiceDetail")
   Future<bool> putInvoiceDetail(
-    @Field("orderNo") int orderNo,
-    @Field("name") String? name,
-    @Field("unit") UnitModel unit,
-    @Field("unitNo") int unitNo,
-    @Field("price") double price,
-    @Field("quantity") double quantity,
-    @Field("total") double total,
-    @Field("creationDate") String creationDate,
+      @Body() InvoiceDetailRequest request
   );
 
   @DELETE("/InvoiceDetail")

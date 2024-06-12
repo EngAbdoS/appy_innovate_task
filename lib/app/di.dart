@@ -1,5 +1,7 @@
 import 'package:appy_innovate/data/data_sourse/remote_data_sourse.dart';
 import 'package:appy_innovate/data/network/dio_factory.dart';
+import 'package:appy_innovate/data/repository/repository_implementation.dart';
+import 'package:appy_innovate/domain/repository/repository.dart';
 import 'package:appy_innovate/presentation/pages/addInvoiceDetail/addInvoiceDetailViewModel.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -15,6 +17,9 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<AppServiceClient>(() => AppServiceClient(dio));
   instance.registerLazySingleton<RemoteDataSource>(
       () => RemoteDataSourceImplementation(instance()));
+  instance.registerLazySingleton<Repository>(
+          () => RepositoryImplementation(instance()));
+
   instance.registerLazySingleton<SideMenuViewModel>(
       () => SideMenuViewModel());
   initInvoiceDetailModule();
