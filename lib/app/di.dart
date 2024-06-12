@@ -5,6 +5,7 @@ import 'package:appy_innovate/domain/repository/repository.dart';
 import 'package:appy_innovate/presentation/pages/addInvoiceDetail/addInvoiceDetailViewModel.dart';
 import 'package:appy_innovate/presentation/pages/put/addUnit/addUnitViewModel.dart';
 import 'package:appy_innovate/presentation/pages/put/deleteUnit/deleteUnitViewModel.dart';
+import 'package:appy_innovate/presentation/pages/put/getUnits/GetUnitsViewModel.dart';
 import 'package:appy_innovate/presentation/pages/put/putUnit/putUnitViewModel.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -46,7 +47,7 @@ initUnitModule() {
     instance.registerLazySingleton<DeleteUnitViewModel>(
         () => DeleteUnitViewModel());
   }
-  if (!GetIt.I.isRegistered<PutUnitViewModel>()) {
-    instance.registerLazySingleton<PutUnitViewModel>(() => PutUnitViewModel());
+  if (!GetIt.I.isRegistered<GetUnitsViewModel>()) {
+    instance.registerLazySingleton<GetUnitsViewModel>(() => GetUnitsViewModel());
   }
 }

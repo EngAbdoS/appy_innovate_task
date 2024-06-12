@@ -3,6 +3,7 @@ import 'package:appy_innovate/presentation/mainPage.dart';
 import 'package:appy_innovate/presentation/pages/addInvoiceDetail/addInvoiceDetailView.dart';
 import 'package:appy_innovate/presentation/pages/put/addUnit/addUnitView.dart';
 import 'package:appy_innovate/presentation/pages/put/deleteUnit/deleteUnitView.dart';
+import 'package:appy_innovate/presentation/pages/put/getUnits/getUnitsView.dart';
 import 'package:appy_innovate/presentation/pages/put/putUnit/putUnitView.dart';
 import 'package:appy_innovate/presentation/side_menu/side_menu_viewModel/side_menu_viewModel.dart';
 import 'package:easy_sidemenu/easy_sidemenu.dart';
@@ -18,6 +19,7 @@ class SideMenuView extends StatelessWidget {
     AddUnitView(),
     PutUnitView(),
     DeleteUnitView(),
+    const GetUnitsView(),
     AddInvoiceDetailView(),
   ];
   final List items = [
