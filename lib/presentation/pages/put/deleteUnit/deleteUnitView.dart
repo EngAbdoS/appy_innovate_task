@@ -32,8 +32,11 @@ class DeleteUnitView extends StatelessWidget {
               SizedBox(
                 height: 20.h,
               ),
-              inputUnitId(deleteUnitViewModel.outputIsUnitIdValid,
-                  deleteUnitViewModel.setUnitId),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: inputUnitId(deleteUnitViewModel.outputIsUnitIdValid,
+                    deleteUnitViewModel.setUnitId),
+              ),
               SizedBox(
                 height: 20.h,
               ),
