@@ -1,4 +1,5 @@
 import 'package:appy_innovate/app/constants.dart';
+import 'package:appy_innovate/data/data_sourse/firebase_data_sourse.dart';
 import 'package:appy_innovate/data/data_sourse/remote_data_sourse.dart';
 import 'package:appy_innovate/data/mappers/mappers.dart';
 import 'package:appy_innovate/data/network/error_handler.dart';
@@ -11,8 +12,9 @@ import 'package:dartz/dartz.dart';
 
 class RepositoryImplementation implements Repository {
   final RemoteDataSource _remoteDataSource;
+  final FirebaseDataSource _firebaseDataSource;
 
-  RepositoryImplementation(this._remoteDataSource);
+  RepositoryImplementation(this._remoteDataSource, this._firebaseDataSource);
 
   @override
   Future<Either<Failure, List<InvoiceDetailModel>>> getInvoiceDetail() async {
@@ -84,7 +86,11 @@ class RepositoryImplementation implements Repository {
         }
       case StorageType.firebase:
         {
-          return Right(false);
+          return await (await _firebaseDataSource.deleteUnit(id)).fold((error) {
+            return Left(error);
+          }, (response) {
+            return Right(response);
+          });
         }
       case StorageType.localDB:
         {
@@ -114,7 +120,16 @@ class RepositoryImplementation implements Repository {
         }
       case StorageType.firebase:
         {
-          return Right([]);
+          return await (await _firebaseDataSource.getUnits()).fold((error) {
+            return Left(error);
+          }, (response) {
+            if (response.isNotEmpty) {
+              var units = response.map((e) => e.toDomain()).toList();
+              return Right(units);
+            } else {
+              return Left(ErrorHandler.handle(response).failure);
+            }
+          });
         }
       case StorageType.localDB:
         {
@@ -168,6 +183,7 @@ class RepositoryImplementation implements Repository {
 
   @override
   Future<Either<Failure, UnitModel>> postUnit(UnitRequest unit) async {
+    print("post unit");
     switch (defaultStorage) {
       case StorageType.remoteApi:
         {
@@ -183,8 +199,17 @@ class RepositoryImplementation implements Repository {
           });
         }
       case StorageType.firebase:
-        {
-          return Left(DataSource.DEFAULT.getFailure());
+        {print("heer");
+          return await (await _firebaseDataSource.postUnit(unit)).fold((error) {
+            return Left(error);
+          }, (response) {
+            if (response.id != 0) {
+              var unit = response.toDomain();
+              return Right(unit);
+            } else {
+              return Left(ErrorHandler.handle(response).failure);
+            }
+          });
         }
       case StorageType.localDB:
         {
@@ -236,7 +261,11 @@ class RepositoryImplementation implements Repository {
         }
       case StorageType.firebase:
         {
-          return Right(false);
+          return await (await _firebaseDataSource.putUnit(unit)).fold((error) {
+            return Left(error);
+          }, (response) {
+            return Right(response);
+          });
         }
       case StorageType.localDB:
         {

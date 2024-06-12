@@ -2,7 +2,7 @@ import 'package:appy_innovate/presentation/widgets/storageTypeWidget.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatelessWidget {
-  MainPage({super.key});
+  const MainPage({super.key});
 
   @override
   Widget build(BuildContext context) {

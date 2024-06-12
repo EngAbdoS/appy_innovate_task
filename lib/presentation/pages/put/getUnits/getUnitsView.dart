@@ -65,7 +65,7 @@ class _GetUnitsViewState extends State<GetUnitsView> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.lightBlue,
               ),
-              child: const Text("Delete Unit"),
+              child: const Text("Get Unit"),
             ),
             SizedBox(
               height: 20.h,

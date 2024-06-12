@@ -1,3 +1,4 @@
+import 'package:appy_innovate/data/data_sourse/firebase_data_sourse.dart';
 import 'package:appy_innovate/data/data_sourse/remote_data_sourse.dart';
 import 'package:appy_innovate/data/network/dio_factory.dart';
 import 'package:appy_innovate/data/repository/repository_implementation.dart';
@@ -10,6 +11,7 @@ import 'package:appy_innovate/presentation/pages/put/addUnit/addUnitViewModel.da
 import 'package:appy_innovate/presentation/pages/put/deleteUnit/deleteUnitViewModel.dart';
 import 'package:appy_innovate/presentation/pages/put/getUnits/GetUnitsViewModel.dart';
 import 'package:appy_innovate/presentation/pages/put/putUnit/putUnitViewModel.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
@@ -22,10 +24,13 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<DioFactory>(() => DioFactory());
   Dio dio = await instance<DioFactory>().getDio();
   instance.registerLazySingleton<AppServiceClient>(() => AppServiceClient(dio));
+  instance.registerLazySingleton<FirebaseFirestore>(() => FirebaseFirestore.instance);
+  instance.registerLazySingleton<FirebaseDataSource>(() => FirebaseDataSourceImplementation(instance()));
+
   instance.registerLazySingleton<RemoteDataSource>(
       () => RemoteDataSourceImplementation(instance()));
   instance.registerLazySingleton<Repository>(
-      () => RepositoryImplementation(instance()));
+      () => RepositoryImplementation(instance(),instance()));
 
   instance.registerLazySingleton<SideMenuViewModel>(() => SideMenuViewModel());
   initInvoiceDetailModule();
