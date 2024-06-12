@@ -48,7 +48,10 @@ class _GetUnitsViewState extends State<GetUnitsView> {
                     ? ListView.builder(
                         itemCount: snapshot.data?.length,
                         itemBuilder: (BuildContext context, int index) =>
-                            unitWidget(snapshot.data![index]),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: unitWidget(snapshot.data![index]),
+                            ),
                       )
                     : Container();
               },

@@ -4,6 +4,7 @@ import 'package:appy_innovate/data/repository/repository_implementation.dart';
 import 'package:appy_innovate/domain/repository/repository.dart';
 import 'package:appy_innovate/presentation/pages/invoiceDetail/addInvoiceDetail/addInvoiceDetailViewModel.dart';
 import 'package:appy_innovate/presentation/pages/invoiceDetail/deleteInvoiceDetail/deleteInvoiceDetailViewModel.dart';
+import 'package:appy_innovate/presentation/pages/invoiceDetail/getInvoiceDetail/getInvoiceDetailViewModel.dart';
 import 'package:appy_innovate/presentation/pages/invoiceDetail/putInvoiceDetail/putInvoiceDetailViewModel.dart';
 import 'package:appy_innovate/presentation/pages/put/addUnit/addUnitViewModel.dart';
 import 'package:appy_innovate/presentation/pages/put/deleteUnit/deleteUnitViewModel.dart';
@@ -44,9 +45,9 @@ initInvoiceDetailModule() {
     instance.registerLazySingleton<DeleteInvoiceDetailViewModel>(
             () => DeleteInvoiceDetailViewModel());
   }
-  if (!GetIt.I.isRegistered<AddInvoiceDetailViewModel>()) {
-    instance.registerLazySingleton<AddInvoiceDetailViewModel>(
-            () => AddInvoiceDetailViewModel());
+  if (!GetIt.I.isRegistered<GetInvoiceDetailViewModel>()) {
+    instance.registerLazySingleton<GetInvoiceDetailViewModel>(
+            () => GetInvoiceDetailViewModel());
   }
 }
 
