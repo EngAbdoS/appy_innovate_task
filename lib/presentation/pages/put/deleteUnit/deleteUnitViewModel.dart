@@ -6,19 +6,20 @@ import 'package:appy_innovate/presentation/widgets/errorState.dart';
 import 'package:appy_innovate/presentation/widgets/loadingState.dart';
 import 'package:appy_innovate/presentation/widgets/successState.dart';
 
-class PutUnitViewModel extends BaseUnitViewModel{
+class DeleteUnitViewModel extends BaseUnitViewModel{
 
   final Repository _repo = instance<Repository>();
 
-  putUnit(dynamic context) async {
-    loadingState(context: context);
-    //print(_repo.getInvoiceDetail());
-    UnitRequest req = UnitRequest(
-      id: unitModel.id,
-      name: unitModel.name,
-    );
 
-    (await _repo.putUnit(req)).fold(
+
+  isUnitIdValid() =>(unitModel.id != 0)?true:false;
+
+
+
+  deleteUnit(dynamic context) async {
+    loadingState(context: context);
+
+    (await _repo.deleteUnit(unitModel.id)).fold(
             (failure) => {
           errorState(context: context, message: failure.message),
           //TODO create error state

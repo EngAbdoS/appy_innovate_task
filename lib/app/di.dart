@@ -4,6 +4,7 @@ import 'package:appy_innovate/data/repository/repository_implementation.dart';
 import 'package:appy_innovate/domain/repository/repository.dart';
 import 'package:appy_innovate/presentation/pages/addInvoiceDetail/addInvoiceDetailViewModel.dart';
 import 'package:appy_innovate/presentation/pages/put/addUnit/addUnitViewModel.dart';
+import 'package:appy_innovate/presentation/pages/put/deleteUnit/deleteUnitViewModel.dart';
 import 'package:appy_innovate/presentation/pages/put/putUnit/putUnitViewModel.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -20,34 +21,32 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<RemoteDataSource>(
       () => RemoteDataSourceImplementation(instance()));
   instance.registerLazySingleton<Repository>(
-          () => RepositoryImplementation(instance()));
+      () => RepositoryImplementation(instance()));
 
-  instance.registerLazySingleton<SideMenuViewModel>(
-      () => SideMenuViewModel());
+  instance.registerLazySingleton<SideMenuViewModel>(() => SideMenuViewModel());
   initInvoiceDetailModule();
   initUnitModule();
 }
 
-initInvoiceDetailModule()
-{
+initInvoiceDetailModule() {
   if (!GetIt.I.isRegistered<AddInvoiceDetailViewModel>()) {
-    instance
-        .registerLazySingleton<AddInvoiceDetailViewModel>(() => AddInvoiceDetailViewModel());
+    instance.registerLazySingleton<AddInvoiceDetailViewModel>(
+        () => AddInvoiceDetailViewModel());
   }
-
-
-
 }
-initUnitModule()
-{
+
+initUnitModule() {
   if (!GetIt.I.isRegistered<AddUnitViewModel>()) {
-    instance
-        .registerLazySingleton<AddUnitViewModel>(() => AddUnitViewModel());
-  }  if (!GetIt.I.isRegistered<PutUnitViewModel>()) {
-    instance
-        .registerLazySingleton<PutUnitViewModel>(() => PutUnitViewModel());
+    instance.registerLazySingleton<AddUnitViewModel>(() => AddUnitViewModel());
   }
-
-
-
+  if (!GetIt.I.isRegistered<PutUnitViewModel>()) {
+    instance.registerLazySingleton<PutUnitViewModel>(() => PutUnitViewModel());
+  }
+  if (!GetIt.I.isRegistered<DeleteUnitViewModel>()) {
+    instance.registerLazySingleton<DeleteUnitViewModel>(
+        () => DeleteUnitViewModel());
+  }
+  if (!GetIt.I.isRegistered<PutUnitViewModel>()) {
+    instance.registerLazySingleton<PutUnitViewModel>(() => PutUnitViewModel());
+  }
 }

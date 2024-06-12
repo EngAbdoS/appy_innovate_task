@@ -48,25 +48,30 @@ class InputUnit extends StatelessWidget {
           ),
           Flexible(
             flex: 1,
-            child: StreamBuilder<bool>(
-                stream: outputIsUnitIdValid,
-                builder: (context, snapshot) {
-                  return TextFormField(
-                    onChanged: (id) => setUnitId(id),
-                    textAlign: TextAlign.center,
-                    keyboardType: TextInputType.number,
-                    controller: unitIdTextEditingController,
-                    decoration: InputDecoration(
-                      hintText: "enter Unit Id",
-                      labelText: "Unit Id",
-                      errorText:
-                          (snapshot.data ?? true) ? null : "invalid Unit id",
-                    ),
-                  );
-                }),
+            child: inputUnitId(outputIsUnitIdValid, setUnitId),
           ),
         ],
       ),
     );
   }
+}
+
+Widget inputUnitId(Stream<bool> outputIsUnitIdValid, Function setUnitId) {
+  final TextEditingController unitIdTextEditingController =
+      TextEditingController();
+  return StreamBuilder<bool>(
+      stream: outputIsUnitIdValid,
+      builder: (context, snapshot) {
+        return TextFormField(
+          onChanged: (id) => setUnitId(id),
+          textAlign: TextAlign.center,
+          keyboardType: TextInputType.number,
+          controller: unitIdTextEditingController,
+          decoration: InputDecoration(
+            hintText: "enter Unit Id",
+            labelText: "Unit Id",
+            errorText: (snapshot.data ?? true) ? null : "invalid Unit id",
+          ),
+        );
+      });
 }
