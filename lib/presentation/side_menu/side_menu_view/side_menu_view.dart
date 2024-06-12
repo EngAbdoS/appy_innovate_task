@@ -1,5 +1,5 @@
 import 'package:appy_innovate/app/di.dart';
-import 'package:appy_innovate/presentation/mainPage.dart';
+import 'package:appy_innovate/presentation/main_page/mainPage.dart';
 import 'package:appy_innovate/presentation/pages/invoiceDetail/addInvoiceDetail/addInvoiceDetailView.dart';
 import 'package:appy_innovate/presentation/pages/invoiceDetail/deleteInvoiceDetail/deleteInvoiceDetailView.dart';
 import 'package:appy_innovate/presentation/pages/invoiceDetail/getInvoiceDetail/getInvoiceDetailView.dart';

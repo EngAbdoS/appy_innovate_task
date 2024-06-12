@@ -1,5 +1,5 @@
 import 'package:appy_innovate/app/constants.dart';
-import 'package:appy_innovate/presentation/mainPage.dart';
+import 'package:appy_innovate/presentation/main_page/mainPage.dart';
 import 'package:appy_innovate/presentation/side_menu/side_menu_view/side_menu_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
