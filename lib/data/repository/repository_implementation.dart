@@ -4,6 +4,7 @@ import 'package:appy_innovate/data/mappers/mappers.dart';
 import 'package:appy_innovate/data/network/error_handler.dart';
 import 'package:appy_innovate/data/network/failure.dart';
 import 'package:appy_innovate/data/requests/invoiceDetailReuuest.dart';
+import 'package:appy_innovate/data/requests/unitRequest.dart';
 import 'package:appy_innovate/domain/models/models.dart';
 import 'package:appy_innovate/domain/repository/repository.dart';
 import 'package:dartz/dartz.dart';
@@ -166,7 +167,7 @@ class RepositoryImplementation implements Repository {
   }
 
   @override
-  Future<Either<Failure, UnitModel>> postUnit(UnitModel unit) async {
+  Future<Either<Failure, UnitModel>> postUnit(UnitRequest unit) async {
     switch (defaultStorage) {
       case StorageType.remoteApi:
         {
@@ -223,7 +224,7 @@ class RepositoryImplementation implements Repository {
   }
 
   @override
-  Future<Either<Failure, bool>> putUnit(UnitModel unit) async {
+  Future<Either<Failure, bool>> putUnit(UnitRequest unit) async {
     switch (defaultStorage) {
       case StorageType.remoteApi:
         {

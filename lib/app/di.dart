@@ -3,6 +3,8 @@ import 'package:appy_innovate/data/network/dio_factory.dart';
 import 'package:appy_innovate/data/repository/repository_implementation.dart';
 import 'package:appy_innovate/domain/repository/repository.dart';
 import 'package:appy_innovate/presentation/pages/addInvoiceDetail/addInvoiceDetailViewModel.dart';
+import 'package:appy_innovate/presentation/pages/put/addUnit/addUnitViewModel.dart';
+import 'package:appy_innovate/presentation/pages/put/putUnit/putUnitViewModel.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
@@ -23,6 +25,7 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<SideMenuViewModel>(
       () => SideMenuViewModel());
   initInvoiceDetailModule();
+  initUnitModule();
 }
 
 initInvoiceDetailModule()
@@ -30,6 +33,19 @@ initInvoiceDetailModule()
   if (!GetIt.I.isRegistered<AddInvoiceDetailViewModel>()) {
     instance
         .registerLazySingleton<AddInvoiceDetailViewModel>(() => AddInvoiceDetailViewModel());
+  }
+
+
+
+}
+initUnitModule()
+{
+  if (!GetIt.I.isRegistered<AddUnitViewModel>()) {
+    instance
+        .registerLazySingleton<AddUnitViewModel>(() => AddUnitViewModel());
+  }  if (!GetIt.I.isRegistered<PutUnitViewModel>()) {
+    instance
+        .registerLazySingleton<PutUnitViewModel>(() => PutUnitViewModel());
   }
 
 

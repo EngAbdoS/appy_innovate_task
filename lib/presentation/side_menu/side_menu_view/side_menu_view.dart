@@ -1,10 +1,11 @@
 import 'package:appy_innovate/app/di.dart';
 import 'package:appy_innovate/presentation/mainPage.dart';
 import 'package:appy_innovate/presentation/pages/addInvoiceDetail/addInvoiceDetailView.dart';
+import 'package:appy_innovate/presentation/pages/put/addUnit/addUnitView.dart';
+import 'package:appy_innovate/presentation/pages/put/putUnit/putUnitView.dart';
 import 'package:appy_innovate/presentation/side_menu/side_menu_viewModel/side_menu_viewModel.dart';
 import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SideMenuView extends StatelessWidget {
   SideMenuView({super.key});
@@ -13,6 +14,8 @@ class SideMenuView extends StatelessWidget {
   final SideMenuController sideMenuController = SideMenuController();
   final pages = [
     MainPage(),
+    AddUnitView(),
+    PutUnitView(),
     AddInvoiceDetailView(),
   ];
   final List items = [

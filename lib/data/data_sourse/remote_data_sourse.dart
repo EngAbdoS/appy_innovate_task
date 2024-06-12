@@ -2,6 +2,7 @@ import 'package:appy_innovate/data/network/app_api.dart';
 import 'package:appy_innovate/data/network/error_handler.dart';
 import 'package:appy_innovate/data/network/failure.dart';
 import 'package:appy_innovate/data/requests/invoiceDetailReuuest.dart';
+import 'package:appy_innovate/data/requests/unitRequest.dart';
 import 'package:appy_innovate/data/response/response.dart';
 import 'package:appy_innovate/domain/models/models.dart';
 import 'package:dartz/dartz.dart';
@@ -17,9 +18,9 @@ abstract class RemoteDataSource {
   Future<Either<Failure, InvoiceDetailResponse>> postInvoiceDetail(
       InvoiceDetailRequest invoiceDetail);
 
-  Future<Either<Failure, UnitResponse>> postUnit(UnitModel unit);
+  Future<Either<Failure, UnitResponse>> postUnit(UnitRequest unit);
 
-  Future<Either<Failure, bool>> putUnit(UnitModel unit);
+  Future<Either<Failure, bool>> putUnit(UnitRequest unit);
 
   Future<Either<Failure, bool>> deleteUnit(int id);
 
@@ -98,7 +99,7 @@ class RemoteDataSourceImplementation implements RemoteDataSource {
   }
 
   @override
-  Future<Either<Failure, UnitResponse>> postUnit(UnitModel unit) async {
+  Future<Either<Failure, UnitResponse>> postUnit(UnitRequest unit) async {
     try {
       var result = await _appServiceClient.postUnit(unit.id, unit.name);
       return Right(result);
@@ -108,7 +109,7 @@ class RemoteDataSourceImplementation implements RemoteDataSource {
   }
 
   @override
-  Future<Either<Failure, bool>> putUnit(UnitModel unit) async {
+  Future<Either<Failure, bool>> putUnit(UnitRequest unit) async {
     try {
       var result = await _appServiceClient.putUnit(unit.id, unit.name);
       return Right(result);

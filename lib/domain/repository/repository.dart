@@ -1,5 +1,6 @@
 import 'package:appy_innovate/data/network/failure.dart';
 import 'package:appy_innovate/data/requests/invoiceDetailReuuest.dart';
+import 'package:appy_innovate/data/requests/unitRequest.dart';
 import 'package:appy_innovate/domain/models/models.dart';
 import 'package:dartz/dartz.dart';
 
@@ -19,9 +20,9 @@ abstract class Repository {
 
   //Unit
 
-  Future<Either<Failure, UnitModel>> postUnit(UnitModel unit);
+  Future<Either<Failure, UnitModel>> postUnit(UnitRequest unit);
 
-  Future<Either<Failure, bool>> putUnit(UnitModel unit);
+  Future<Either<Failure, bool>> putUnit(UnitRequest unit);
 
   Future<Either<Failure, bool>> deleteUnit(int id);
 
