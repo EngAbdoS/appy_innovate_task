@@ -1,4 +1,6 @@
 import 'package:appy_innovate/app/di.dart';
+import 'package:appy_innovate/presentation/mainPage.dart';
+import 'package:appy_innovate/presentation/pages/addInvoiceDetail/addInvoiceDetailView.dart';
 import 'package:appy_innovate/presentation/side_menu/side_menu_viewModel/side_menu_viewModel.dart';
 import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:flutter/material.dart';
@@ -9,11 +11,14 @@ class SideMenuView extends StatelessWidget {
 
   final SideMenuViewModel _viewModel = instance<SideMenuViewModel>();
   final SideMenuController sideMenuController = SideMenuController();
-
+  final pages = [
+    MainPage(),
+    AddInvoiceDetailView(),
+  ];
   final List items = [
     SideMenuItem(
       title: 'Main Page',
-      onTap:(index, sideMenu)=>  sideMenu.changePage(index),
+      onTap: (index, sideMenu) => sideMenu.changePage(index),
       icon: const Icon(Icons.home),
     ),
     SideMenuExpansionItem(
@@ -86,9 +91,12 @@ class SideMenuView extends StatelessWidget {
     ),
   ];
 
+
   @override
   Widget build(BuildContext context) {
-    sideMenuController.addListener((index)=>_viewModel.changePageWidget(index));
+    sideMenuController
+        .addListener((index) => _viewModel.changePageWidget(index));
+
     return Scaffold(
       body: Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -107,7 +115,8 @@ class SideMenuView extends StatelessWidget {
                 unselectedIconColor: Colors.black54,
                 backgroundColor: Colors.lightBlue.withOpacity(.05),
                 selectedTitleTextStyle: const TextStyle(color: Colors.white),
-                unselectedTitleTextStyle: const TextStyle(color: Colors.black54),
+                unselectedTitleTextStyle:
+                    const TextStyle(color: Colors.black54),
                 iconSize: 20,
                 itemBorderRadius: const BorderRadius.all(
                   Radius.circular(5.0),
@@ -157,15 +166,18 @@ class SideMenuView extends StatelessWidget {
           Expanded(
             //Stream builder
 
-            child: PageView(
-              children: [
-
-              ],
-            ),
+            child: StreamBuilder<int>(
+                stream: _viewModel.currentPageWidgetStream,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return pages[snapshot.data!];
+                  } else {
+                    return pages[0];
+                  }
+                }),
           ),
         ],
       ),
     );
   }
-
 }

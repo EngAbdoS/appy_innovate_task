@@ -26,6 +26,53 @@ class _MyAppState extends State<MyApp> {
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
+            inputDecorationTheme: const InputDecorationTheme(
+
+              contentPadding: EdgeInsets.all(8),
+              hintStyle:
+              TextStyle(
+                color: Color(0xffCCBEBE),
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+              )
+                ,
+              labelStyle:   TextStyle(
+                color: Color(0xffCCBEBE),
+              fontSize: 12,
+              fontWeight: FontWeight.w600
+          ),
+
+              enabledBorder:  OutlineInputBorder(
+                borderSide:
+                BorderSide(color: Color(0xffCCBEBE), width: 1.5),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(24),
+                ),
+              ),
+              focusedBorder:  OutlineInputBorder(
+                borderSide:
+                BorderSide(color: Colors.lightBlue, width: 1.5),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+
+              focusedErrorBorder: OutlineInputBorder(
+                borderSide:
+                BorderSide(color: Colors.lightBlue, width: 1.5),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+              errorBorder:  OutlineInputBorder(
+                borderSide:                 BorderSide(color: Colors.red, width: 1.5),
+
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+
+            ),
             primarySwatch: Colors.blue,
 
           ),
